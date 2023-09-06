@@ -1,0 +1,1 @@
+Engine\Build\BatchFiles\RunUAT.bat BuildCookRun -project="D:\UE4\Engines\Tailwinds_2702\Projects\WoA_2702\WoA_2702.uproject" -platform=Win64 -clientconfig=Development -build -cook -stage -archive -archivedirectory="D:\UE4\builds\Package" -nodebuginfo

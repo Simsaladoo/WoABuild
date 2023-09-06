@@ -1,0 +1,1 @@
+"F:/Programs/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/MSBuild.exe" "%WORKSPACE%/WoA_2702/Engines/Tailwinds_2702/UE4.sln" /t:build /p:Configuration="Development Editor";Platform=Win64;verbosity=diagnostic 
