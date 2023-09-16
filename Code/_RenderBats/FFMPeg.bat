@@ -1,0 +1,1 @@
+ffmpeg -framerate 24 -i Z:\InProd\WoA\editorial\footage\Moneyshots\LS_0010\2023.02.27_06.55.57\LS_0010.%03d.png Z:\InProd\WoA\editorial\footage\Moneyshots\LS_0010
