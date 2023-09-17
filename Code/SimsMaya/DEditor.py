@@ -5,7 +5,7 @@ from SimsMaya import aDMan, aCreateWorld48, aExportGeo, aOrientToEpic, aReduceWo
 
 # Create a window using the cmds.window command
 # give it a title, icon and dimensions
-window = cmds.window( title="Sim's Tools - DEditor Library", iconName='DEditor', widthHeight=(320, 650) )
+window = cmds.window( title="Sim's Tools - DEditor Library", iconName='DEditor', widthHeight=(320, 700) )
 
 # As we add contents to the window, align them vertically
 cmds.columnLayout( adjustableColumn=True )
