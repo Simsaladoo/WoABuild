@@ -1,14 +1,11 @@
 # Import the Maya commands library
 import maya.cmds as cmds
-import os
-import subprocess
-from SimsMaya.MayaPaths import get_dman_standin
-
+from SimsMaya import aDMan, aCreateWorld48, aExportGeo, aOrientToEpic, aReduceWorld48
 
 
 # Create a window using the cmds.window command
 # give it a title, icon and dimensions
-window = cmds.window( title="Sim's Tools - DEditor Library", iconName='DEditor', widthHeight=(320, 500) )
+window = cmds.window( title="Sim's Tools - DEditor Library", iconName='DEditor', widthHeight=(320, 650) )
 
 # As we add contents to the window, align them vertically
 cmds.columnLayout( adjustableColumn=True )
@@ -17,8 +14,6 @@ cmds.columnLayout( adjustableColumn=True )
 
 # -------------------------------------------- Rigging ---------------------------------------------- #
 # Top text header
-cmds.text( label=' ', align='center' )
-cmds.text( label='DEditor Library', align='center', fn="boldLabelFont" )
 cmds.text( label=' ', align='center' )
 cmds.text( label='Rigging', align='center', fn="smallObliqueLabelFont" )
 cmds.text( label=' ', align='center' )
@@ -85,15 +80,8 @@ cmds.button( label='Import DMan', command=('ButtonImportDMan()'))
 # Take wWeapon and wSheathe and rig them to Almerra Skeleton
 cmds.button( label='Import Collider Proxys', command=('ButtonImportCollider()'))
 
-# Close button with a command to delete the UI
-cmds.button( label='Close', command=('cmds.deleteUI(\"' + window + '\", window=True)') )
-
-# Set its parent to the Maya window (denoted by '..')
-cmds.setParent( '..' )
-
-# Show the window that we created (window)
-cmds.showWindow( window )
-
+# Take wWeapon and wSheathe and rig them to Almerra Skeleton
+cmds.button( label='Export Geo', command=('export_geo()'))
 
 
 # -------------------------------------------- World48 Tools ---------------------------------------------- #
@@ -108,26 +96,50 @@ cmds.text( label=' ', align='center' )
 # 6 x 6 = the 11,597 worldmap
 # 836.4009657 div
 # worldmap is 0.0011955988 of world scale
-
-def execute_script(args):
+def load_worldmap_cells():
     # Get the values from the integer input fields
     value1 = cmds.intField(intField1, query=True, value=True)
     value2 = cmds.intField(intField2, query=True, value=True)
 
     # Replace this with your custom script logic
-    result = value1 + value2
-    print(f"Result of the operation: {result}")
+    print("Load Worldmap Grid Cell: " + str(value1) + ' ' + str(value2))
+    aCreateWorld48.run_import_world_loop(value1, value2)
+    
+# Geo Reduce 85%
+def curate_cells():
+    aReduceWorld48.reduce_objects_in_geo_group()
 
+# Export Geo Relative only
+def export_geo():
+    aExportGeo.export_geo_as_fbx(True)
 
+# Export Worldmap
+def exportmap_cell():
+    aExportGeo.export_worldmap_geo()
 
 # Create two integer input fields
 intField1 = cmds.intField(value=0)
 intField2 = cmds.intField(value=0)
 
-# Create a button to execute the script
-cmds.button(label="Return Coordinate Values", command=execute_script)
 
 
+# Create a button to execute the scrip
+cmds.button( label="Load 8x8 Map Coordinates", command=('load_worldmap_cells()'))
+
+# Create a button to execute the scrip
+cmds.button( label="Reduce Worldmap", command=('curate_cells()'))
+
+# Create a button to execute the scrip
+cmds.button( label="Export Worldmap", command=('exportmap_cell()'))
+
+# Close button with a command to delete the UI
+cmds.button( label='Close', command=('cmds.deleteUI(\"' + window + '\", window=True)') )
+
+# Set its parent to the Maya window (denoted by '..')
+cmds.setParent( '..' )
+
+# Show the window that we created (window)
+cmds.showWindow( window )
 
 
 

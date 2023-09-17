@@ -77,4 +77,3 @@ def run_import_world_loop(x_value, y_value):
 
 
 
-run_import_world_loop(16, 8)

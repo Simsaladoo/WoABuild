@@ -21,5 +21,4 @@ def reduce_objects_in_geo_group():
     else:
         print("The 'Geo' group does not exist in the scene.")
 
-# Call the function to reduce objects in the "Geo" group
-reduce_objects_in_geo_group()
+

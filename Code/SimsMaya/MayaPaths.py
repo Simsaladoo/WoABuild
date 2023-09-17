@@ -2,6 +2,10 @@ def get_code_dir():
     value = get_drive() + '/UE4/Tailwind_R E B U I L D/Resources/Code/SimsMaya'
     return value
 
+def get_art_source_dir():
+    source = get_drive() + '/UE4/Tailwind_R E B U I L D'
+    return source
+
 def get_drive():
     drive_value = 'D:'
     return drive_value
