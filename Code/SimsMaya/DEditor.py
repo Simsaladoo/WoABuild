@@ -1,6 +1,6 @@
 # Import the Maya commands library
 import maya.cmds as cmds
-from SimsMaya import aDMan, aCreateWorld48, aExportGeo, aOrientToEpic, aReduceWorld48
+from SimsMaya import aDMan, aCreateWorld48, aExportGeo, aOrientToEpic, aReduceWorld48, aCreateWorldmap
 
 
 # Create a window using the cmds.window command
@@ -116,6 +116,10 @@ def export_geo():
 # Export Worldmap
 def exportmap_cell():
     aExportGeo.export_worldmap_geo()
+    
+def construct_cells():
+    aCreateWorldmap.import_map_chunkes()
+    
 
 # Create two integer input fields
 intField1 = cmds.intField(value=0)
@@ -132,6 +136,9 @@ cmds.button( label="Reduce Worldmap", command=('curate_cells()'))
 # Create a button to execute the scrip
 cmds.button( label="Export Worldmap", command=('exportmap_cell()'))
 
+# Create a button to execute the scrip
+cmds.button( label="Construct Worldmap Actor", command=('construct_cells()'))
+
 # Close button with a command to delete the UI
 cmds.button( label='Close', command=('cmds.deleteUI(\"' + window + '\", window=True)') )
 
@@ -147,46 +154,46 @@ cmds.showWindow( window )
 
 # All button command links
 def ButtonImportDMan():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\aDMan.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\aDMan.py")
     
 def ButtonImportCollider():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\aImportColliders.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\aImportColliders.py")
     
 def ButtonReadSkeleton():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\ReadSkeleton.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\ReadSkeleton.py")
     
 def ButtonCreateWeaponWM():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\aCreateWM.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\aCreateWM.py")
 
 def ButtonSelectAlmerra():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\aSelect.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\aSelect.py")
 
 def ButtonCopyRig():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\aCopyRig.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\aCopyRig.py")
     
 def ButtonHorseCopyHorse():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\aCopyHorse.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\aCopyHorse.py")
     
 def ButtonOrientEpic():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\aOrientToEpic.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\aOrientToEpic.py")
 
 def ButtonSkinScalp():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\aSkinScalp.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\aSkinScalp.py")
 
 def ButtonBake():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\Bake.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\Bake.py")
 
 def ButtonExportAnim():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\ExportAnim.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\ExportAnim.py")
     
 def ButtonCleanHistory():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\CleanHistory.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\CleanHistory.py")
     
 def ButtonSkinWeapon():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\aSkinWeapon.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\aSkinWeapon.py")
     
 def ButtonExportWeapon():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\aExport_Weapon.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\aExport_Weapon.py")
     
 def ButtonExportSK():
-    execfile(r"D:\UE4\Tailwind_R E B U I L D\Resources\Code\SimsMaya\aExport_SkeletalAsset.py")
+    execfile(r"Z:\Reposit\WoABuild\Code\SimsMaya\aExport_SkeletalAsset.py")

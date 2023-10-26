@@ -5,7 +5,7 @@ import re
 folder_path = 'D:/UE4/Tailwind_R E B U I L D/H/World48/Landscapes'
 file_list = os.listdir(folder_path)
 fbx_files = [file for file in file_list if file.lower().endswith('.fbx')]
-total_limit = 8
+total_limit = 7
 
 
 # return world-aligned vector of this tile's coordinate (no Z)
@@ -55,6 +55,34 @@ def import_world(reference_name, fbx_file, full_path, x_value, y_value):
         # if x and y coords are in range of what we want to import, ref it in!
         print("Referencing " + fbx_file)    
         import_world_cell(full_path, reference_name, x_value, y_value)
+        
+        
+def create_geo_group():
+    # Select all polygon objects in the scene
+    polyObjects = cmds.ls(type="mesh")
+    
+    # Create a new group named "Geo" if it doesn't exist
+    if not cmds.objExists("Geo"):
+        cmds.group(em=True, name="Geo")
+
+    # Add selected polygon objects to the "Geo" group
+    for polyObject in polyObjects:
+        cmds.parent(polyObject, "Geo")
+
+    # Deselect all objects
+    cmds.select(clear=True)
+    
+    
+def import_refs():
+    # List all reference nodes in the scene
+    referenceNodes = cmds.ls(type="reference")
+
+    # Import all references
+    for referenceNode in referenceNodes:
+        cmds.file(referenceNode, importReference=True)
+
+    print("All references have been imported.")
+     
 
 
 # references in specific sublevel    
@@ -74,6 +102,11 @@ def run_import_world_loop(x_value, y_value):
             if y_low >= y_value and y_low <= y_range:
                 print('Importing: ' + str(x_low) + ', ' + str(y_low) + '... ') 
                 import_world(reference_name, fbx_file, full_path, x_low, y_low)
-
+                
+    # group them all
+    create_geo_group()
+    
+    # Import the references when done
+    import_refs()
 
 
